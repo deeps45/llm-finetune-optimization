@@ -1,0 +1,839 @@
+{
+  "model_name": "distilbert-base-uncased",
+  "device": "Apple MPS",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "versions": {
+    "torch": "2.11.0",
+    "transformers": "5.2.0",
+    "peft": "0.21.1",
+    "datasets": "5.0.1"
+  },
+  "python": "3.12.3",
+  "cost_reduction_target": 0.6,
+  "max_accuracy_drop": 0.01,
+  "cost_definition": "trainable_params * (8 bytes Adam moments + 4 bytes gradient) * optimizer steps",
+  "runs": [
+    {
+      "run_name": "full",
+      "mode": "full",
+      "rank": null,
+      "lora_alpha": null,
+      "target_modules": null,
+      "modules_to_save": null,
+      "learning_rate": 2e-05,
+      "model_name": "distilbert-base-uncased",
+      "seed": 42,
+      "epochs": 3,
+      "train_samples": 8000,
+      "eval_samples": 872,
+      "batch_size": 16,
+      "max_length": 64,
+      "device": "Apple MPS",
+      "python": "3.12.3",
+      "platform": "macOS-26.6.2-arm64-arm-64bit",
+      "versions": {
+        "torch": "2.11.0",
+        "transformers": "5.2.0",
+        "peft": "0.21.1",
+        "datasets": "5.0.1"
+      },
+      "total_params": 66955010,
+      "trainable_params": 66955010,
+      "trainable_fraction": 1.0,
+      "optimizer_and_grad_bytes": 803460120,
+      "training_cost_bytes": 1205190180000,
+      "allreduce_bytes_per_step": 267820040.0,
+      "global_steps": 1500,
+      "train_runtime_sec": 543.7293,
+      "train_samples_per_second": 44.14,
+      "train_loss": 0.22047137959798177,
+      "rss_after_model_bytes": 534872064,
+      "peak_rss_bytes": 1167228928,
+      "memory_overhead_bytes": 632356864,
+      "peak_mps_bytes": 803633152,
+      "epoch_times_sec": [
+        195.71591262496077,
+        165.8638962090481,
+        160.42422491696198
+      ],
+      "accuracy": 0.8910550458715596,
+      "f1": 0.8940914158305463,
+      "eval_loss": 0.43246692419052124,
+      "eval_history": [
+        {
+          "epoch": 1.0,
+          "accuracy": 0.8853211009174312,
+          "f1": 0.8913043478260869,
+          "eval_loss": 0.28901416063308716
+        },
+        {
+          "epoch": 2.0,
+          "accuracy": 0.875,
+          "f1": 0.8803512623490669,
+          "eval_loss": 0.37859511375427246
+        },
+        {
+          "epoch": 3.0,
+          "accuracy": 0.8910550458715596,
+          "f1": 0.8940914158305463,
+          "eval_loss": 0.43246692419052124
+        },
+        {
+          "epoch": 3.0,
+          "accuracy": 0.8910550458715596,
+          "f1": 0.8940914158305463,
+          "eval_loss": 0.43246692419052124
+        }
+      ],
+      "inference_merged": [
+        {
+          "batch_size": 1,
+          "latency_ms_p50": 71.60418723651674,
+          "latency_ms_p95": 77.43929701973684,
+          "latency_ms_mean": 67.61399554878673,
+          "ms_per_sample_p50": 71.60418723651674,
+          "throughput_samples_per_sec": 13.965663721548669
+        },
+        {
+          "batch_size": 8,
+          "latency_ms_p50": 74.70705700688995,
+          "latency_ms_p95": 123.76929662423208,
+          "latency_ms_mean": 72.75916888154045,
+          "ms_per_sample_p50": 9.338382125861244,
+          "throughput_samples_per_sec": 107.08493040037958
+        },
+        {
+          "batch_size": 32,
+          "latency_ms_p50": 140.38588012044784,
+          "latency_ms_p95": 170.93829163059127,
+          "latency_ms_mean": 142.96409227037137,
+          "ms_per_sample_p50": 4.387058753763995,
+          "throughput_samples_per_sec": 227.94315192200767
+        }
+      ],
+      "inference_unmerged": null,
+      "cost_definition": "trainable_params * (8 bytes Adam moments + 4 bytes gradient) * optimizer steps",
+      "inference_benchmark": "round_robin_median"
+    },
+    {
+      "run_name": "lora_r4",
+      "mode": "lora",
+      "rank": 4,
+      "lora_alpha": 8,
+      "target_modules": [
+        "q_lin",
+        "v_lin"
+      ],
+      "modules_to_save": [
+        "pre_classifier",
+        "classifier",
+        "classifier",
+        "score"
+      ],
+      "learning_rate": 0.0005,
+      "model_name": "distilbert-base-uncased",
+      "seed": 42,
+      "epochs": 3,
+      "train_samples": 8000,
+      "eval_samples": 872,
+      "batch_size": 16,
+      "max_length": 64,
+      "device": "Apple MPS",
+      "python": "3.12.3",
+      "platform": "macOS-26.6.2-arm64-arm-64bit",
+      "versions": {
+        "torch": "2.11.0",
+        "transformers": "5.2.0",
+        "peft": "0.21.1",
+        "datasets": "5.0.1"
+      },
+      "total_params": 67620868,
+      "trainable_params": 665858,
+      "trainable_fraction": 0.009846930684178737,
+      "optimizer_and_grad_bytes": 7990296,
+      "training_cost_bytes": 11985444000,
+      "allreduce_bytes_per_step": 2663432.0,
+      "global_steps": 1500,
+      "train_runtime_sec": 278.2725,
+      "train_samples_per_second": 86.246,
+      "train_loss": 0.2841690362294515,
+      "rss_after_model_bytes": 525074432,
+      "peak_rss_bytes": 1141456896,
+      "memory_overhead_bytes": 616382464,
+      "peak_mps_bytes": 290139648,
+      "epoch_times_sec": [
+        76.21125629090238,
+        74.65515041700564,
+        109.96147179196123
+      ],
+      "accuracy": 0.8761467889908257,
+      "f1": 0.8783783783783784,
+      "eval_loss": 0.3055388331413269,
+      "eval_history": [
+        {
+          "epoch": 1.0,
+          "accuracy": 0.8704128440366973,
+          "f1": 0.870561282932417,
+          "eval_loss": 0.30656319856643677
+        },
+        {
+          "epoch": 2.0,
+          "accuracy": 0.875,
+          "f1": 0.8782122905027933,
+          "eval_loss": 0.31373757123947144
+        },
+        {
+          "epoch": 3.0,
+          "accuracy": 0.8761467889908257,
+          "f1": 0.8783783783783784,
+          "eval_loss": 0.3055388331413269
+        },
+        {
+          "epoch": 3.0,
+          "accuracy": 0.8761467889908257,
+          "f1": 0.8783783783783784,
+          "eval_loss": 0.3055388331413269
+        }
+      ],
+      "inference_merged": [
+        {
+          "batch_size": 1,
+          "latency_ms_p50": 74.51582301291637,
+          "latency_ms_p95": 76.62743750552181,
+          "latency_ms_mean": 64.34574773551763,
+          "ms_per_sample_p50": 74.51582301291637,
+          "throughput_samples_per_sec": 13.419968532410394
+        },
+        {
+          "batch_size": 8,
+          "latency_ms_p50": 75.87296864949167,
+          "latency_ms_p95": 112.21977625973523,
+          "latency_ms_mean": 63.70879247801245,
+          "ms_per_sample_p50": 9.484121081186458,
+          "throughput_samples_per_sec": 105.43939616963436
+        },
+        {
+          "batch_size": 32,
+          "latency_ms_p50": 135.97539059992414,
+          "latency_ms_p95": 186.24343248666264,
+          "latency_ms_mean": 141.8368177130885,
+          "ms_per_sample_p50": 4.249230956247629,
+          "throughput_samples_per_sec": 235.33670216953107
+        }
+      ],
+      "inference_unmerged": [
+        {
+          "batch_size": 1,
+          "latency_ms_p50": 12.406625086441636,
+          "latency_ms_p95": 18.948917044326663,
+          "latency_ms_mean": 12.650128040695563,
+          "ms_per_sample_p50": 12.406625086441636,
+          "throughput_samples_per_sec": 79.05058326548095
+        },
+        {
+          "batch_size": 8,
+          "latency_ms_p50": 33.161957981064916,
+          "latency_ms_p95": 42.04337496776134,
+          "latency_ms_mean": 34.16911652893759,
+          "ms_per_sample_p50": 4.1452447476331145,
+          "throughput_samples_per_sec": 234.1295536050765
+        },
+        {
+          "batch_size": 32,
+          "latency_ms_p50": 249.43029193673283,
+          "latency_ms_p95": 293.37629093788564,
+          "latency_ms_mean": 250.14300620532592,
+          "ms_per_sample_p50": 7.794696623022901,
+          "throughput_samples_per_sec": 127.92682268211531
+        }
+      ],
+      "cost_definition": "trainable_params * (8 bytes Adam moments + 4 bytes gradient) * optimizer steps",
+      "inference_benchmark": "round_robin_median",
+      "verdict": {
+        "cost_reduction": 0.990055142998261,
+        "accuracy_drop": 0.014908256880733939,
+        "cost_ok": true,
+        "quality_ok": false,
+        "passed": false
+      },
+      "wall_clock_reduction": 0.4882149996330895,
+      "memory_overhead_reduction": 0.025261685148720073
+    },
+    {
+      "run_name": "lora_r8",
+      "mode": "lora",
+      "rank": 8,
+      "lora_alpha": 16,
+      "target_modules": [
+        "q_lin",
+        "v_lin"
+      ],
+      "modules_to_save": [
+        "pre_classifier",
+        "classifier",
+        "classifier",
+        "score"
+      ],
+      "learning_rate": 0.0005,
+      "model_name": "distilbert-base-uncased",
+      "seed": 42,
+      "epochs": 3,
+      "train_samples": 8000,
+      "eval_samples": 872,
+      "batch_size": 16,
+      "max_length": 64,
+      "device": "Apple MPS",
+      "python": "3.12.3",
+      "platform": "macOS-26.6.2-arm64-arm-64bit",
+      "versions": {
+        "torch": "2.11.0",
+        "transformers": "5.2.0",
+        "peft": "0.21.1",
+        "datasets": "5.0.1"
+      },
+      "total_params": 67694596,
+      "trainable_params": 739586,
+      "trainable_fraction": 0.010925332946813067,
+      "optimizer_and_grad_bytes": 8875032,
+      "training_cost_bytes": 13312548000,
+      "allreduce_bytes_per_step": 2958344.0,
+      "global_steps": 1500,
+      "train_runtime_sec": 375.6034,
+      "train_samples_per_second": 63.897,
+      "train_loss": 0.2720879497528076,
+      "rss_after_model_bytes": 528941056,
+      "peak_rss_bytes": 967589888,
+      "memory_overhead_bytes": 438648832,
+      "peak_mps_bytes": 289661440,
+      "epoch_times_sec": [
+        100.36484587495215,
+        134.4225252920296,
+        119.01894083397929
+      ],
+      "accuracy": 0.875,
+      "f1": 0.8784838350055741,
+      "eval_loss": 0.32081085443496704,
+      "eval_history": [
+        {
+          "epoch": 1.0,
+          "accuracy": 0.8681192660550459,
+          "f1": 0.8679678530424799,
+          "eval_loss": 0.3058107793331146
+        },
+        {
+          "epoch": 2.0,
+          "accuracy": 0.8738532110091743,
+          "f1": 0.8777777777777778,
+          "eval_loss": 0.3238888382911682
+        },
+        {
+          "epoch": 3.0,
+          "accuracy": 0.875,
+          "f1": 0.8784838350055741,
+          "eval_loss": 0.32081085443496704
+        },
+        {
+          "epoch": 3.0,
+          "accuracy": 0.875,
+          "f1": 0.8784838350055741,
+          "eval_loss": 0.32081085443496704
+        }
+      ],
+      "inference_merged": [
+        {
+          "batch_size": 1,
+          "latency_ms_p50": 72.87503623228986,
+          "latency_ms_p95": 81.1131665832363,
+          "latency_ms_mean": 69.21096505539026,
+          "ms_per_sample_p50": 72.87503623228986,
+          "throughput_samples_per_sec": 13.722120107254433
+        },
+        {
+          "batch_size": 8,
+          "latency_ms_p50": 69.0481092169648,
+          "latency_ms_p95": 81.8159216287313,
+          "latency_ms_mean": 54.64070300929182,
+          "ms_per_sample_p50": 8.6310136521206,
+          "throughput_samples_per_sec": 115.8612464660283
+        },
+        {
+          "batch_size": 32,
+          "latency_ms_p50": 134.34948440408334,
+          "latency_ms_p95": 171.21417200542055,
+          "latency_ms_mean": 139.07096430401518,
+          "ms_per_sample_p50": 4.198421387627604,
+          "throughput_samples_per_sec": 238.18476224109284
+        }
+      ],
+      "inference_unmerged": [
+        {
+          "batch_size": 1,
+          "latency_ms_p50": 7.6645000372081995,
+          "latency_ms_p95": 7.870832923799753,
+          "latency_ms_mean": 7.419175925315358,
+          "ms_per_sample_p50": 7.6645000372081995,
+          "throughput_samples_per_sec": 134.78585897765922
+        },
+        {
+          "batch_size": 8,
+          "latency_ms_p50": 23.321834043599665,
+          "latency_ms_p95": 46.331999939866364,
+          "latency_ms_mean": 27.70829589862842,
+          "ms_per_sample_p50": 2.915229255449958,
+          "throughput_samples_per_sec": 288.7221945827425
+        },
+        {
+          "batch_size": 32,
+          "latency_ms_p50": 143.83325004018843,
+          "latency_ms_p95": 222.59533393662423,
+          "latency_ms_mean": 154.0746989485342,
+          "ms_per_sample_p50": 4.4947890637558885,
+          "throughput_samples_per_sec": 207.6914653631029
+        }
+      ],
+      "cost_definition": "trainable_params * (8 bytes Adam moments + 4 bytes gradient) * optimizer steps",
+      "inference_benchmark": "round_robin_median",
+      "verdict": {
+        "cost_reduction": 0.9889539856688843,
+        "accuracy_drop": 0.016055045871559592,
+        "cost_ok": true,
+        "quality_ok": false,
+        "passed": false
+      },
+      "wall_clock_reduction": 0.3092088287315029,
+      "memory_overhead_reduction": 0.30632708052647944
+    },
+    {
+      "run_name": "lora_r16",
+      "mode": "lora",
+      "rank": 16,
+      "lora_alpha": 32,
+      "target_modules": [
+        "q_lin",
+        "v_lin"
+      ],
+      "modules_to_save": [
+        "pre_classifier",
+        "classifier",
+        "classifier",
+        "score"
+      ],
+      "learning_rate": 0.0005,
+      "model_name": "distilbert-base-uncased",
+      "seed": 42,
+      "epochs": 3,
+      "train_samples": 8000,
+      "eval_samples": 872,
+      "batch_size": 16,
+      "max_length": 64,
+      "device": "Apple MPS",
+      "python": "3.12.3",
+      "platform": "macOS-26.6.2-arm64-arm-64bit",
+      "versions": {
+        "torch": "2.11.0",
+        "transformers": "5.2.0",
+        "peft": "0.21.1",
+        "datasets": "5.0.1"
+      },
+      "total_params": 67842052,
+      "trainable_params": 887042,
+      "trainable_fraction": 0.01307510568813573,
+      "optimizer_and_grad_bytes": 10644504,
+      "training_cost_bytes": 15966756000,
+      "allreduce_bytes_per_step": 3548168.0,
+      "global_steps": 1500,
+      "train_runtime_sec": 269.8084,
+      "train_samples_per_second": 88.952,
+      "train_loss": 0.2610846652984619,
+      "rss_after_model_bytes": 527007744,
+      "peak_rss_bytes": 1066467328,
+      "memory_overhead_bytes": 539459584,
+      "peak_mps_bytes": 291202816,
+      "epoch_times_sec": [
+        83.67794204200618,
+        83.01652991690207,
+        86.20688445796259
+      ],
+      "accuracy": 0.8818807339449541,
+      "f1": 0.8841394825646794,
+      "eval_loss": 0.3321076035499573,
+      "eval_history": [
+        {
+          "epoch": 1.0,
+          "accuracy": 0.8727064220183486,
+          "f1": 0.8731428571428571,
+          "eval_loss": 0.30108487606048584
+        },
+        {
+          "epoch": 2.0,
+          "accuracy": 0.8738532110091743,
+          "f1": 0.8785871964679912,
+          "eval_loss": 0.33509618043899536
+        },
+        {
+          "epoch": 3.0,
+          "accuracy": 0.8818807339449541,
+          "f1": 0.8841394825646794,
+          "eval_loss": 0.3321076035499573
+        },
+        {
+          "epoch": 3.0,
+          "accuracy": 0.8818807339449541,
+          "f1": 0.8841394825646794,
+          "eval_loss": 0.3321076035499573
+        }
+      ],
+      "inference_merged": [
+        {
+          "batch_size": 1,
+          "latency_ms_p50": 75.40604700625408,
+          "latency_ms_p95": 83.2223282486666,
+          "latency_ms_mean": 71.17168303479308,
+          "ms_per_sample_p50": 75.40604700625408,
+          "throughput_samples_per_sec": 13.261535907286868
+        },
+        {
+          "batch_size": 8,
+          "latency_ms_p50": 77.81041148700751,
+          "latency_ms_p95": 99.1163126018364,
+          "latency_ms_mean": 60.19548367476091,
+          "ms_per_sample_p50": 9.72630143587594,
+          "throughput_samples_per_sec": 102.8140045414849
+        },
+        {
+          "batch_size": 32,
+          "latency_ms_p50": 132.17339587572496,
+          "latency_ms_p95": 177.36906773643568,
+          "latency_ms_mean": 137.3520646988514,
+          "ms_per_sample_p50": 4.130418621116405,
+          "throughput_samples_per_sec": 242.10621046680043
+        }
+      ],
+      "inference_unmerged": [
+        {
+          "batch_size": 1,
+          "latency_ms_p50": 12.090542004443705,
+          "latency_ms_p95": 20.458666956983507,
+          "latency_ms_mean": 13.32068437768612,
+          "ms_per_sample_p50": 12.090542004443705,
+          "throughput_samples_per_sec": 75.07121793795595
+        },
+        {
+          "batch_size": 8,
+          "latency_ms_p50": 32.980666030198336,
+          "latency_ms_p95": 35.42774997185916,
+          "latency_ms_mean": 32.527662406209856,
+          "ms_per_sample_p50": 4.122583253774792,
+          "throughput_samples_per_sec": 245.94451024776745
+        },
+        {
+          "batch_size": 32,
+          "latency_ms_p50": 208.66399991791695,
+          "latency_ms_p95": 269.8448330629617,
+          "latency_ms_mean": 217.69807706878055,
+          "ms_per_sample_p50": 6.520749997434905,
+          "throughput_samples_per_sec": 146.99257076988224
+        }
+      ],
+      "cost_definition": "trainable_params * (8 bytes Adam moments + 4 bytes gradient) * optimizer steps",
+      "inference_benchmark": "round_robin_median",
+      "verdict": {
+        "cost_reduction": 0.9867516710101305,
+        "accuracy_drop": 0.00917431192660545,
+        "cost_ok": true,
+        "quality_ok": true,
+        "passed": true
+      },
+      "wall_clock_reduction": 0.503781753162833,
+      "memory_overhead_reduction": 0.14690641517255673
+    }
+  ],
+  "full": {
+    "run_name": "full",
+    "mode": "full",
+    "rank": null,
+    "lora_alpha": null,
+    "target_modules": null,
+    "modules_to_save": null,
+    "learning_rate": 2e-05,
+    "model_name": "distilbert-base-uncased",
+    "seed": 42,
+    "epochs": 3,
+    "train_samples": 8000,
+    "eval_samples": 872,
+    "batch_size": 16,
+    "max_length": 64,
+    "device": "Apple MPS",
+    "python": "3.12.3",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "versions": {
+      "torch": "2.11.0",
+      "transformers": "5.2.0",
+      "peft": "0.21.1",
+      "datasets": "5.0.1"
+    },
+    "total_params": 66955010,
+    "trainable_params": 66955010,
+    "trainable_fraction": 1.0,
+    "optimizer_and_grad_bytes": 803460120,
+    "training_cost_bytes": 1205190180000,
+    "allreduce_bytes_per_step": 267820040.0,
+    "global_steps": 1500,
+    "train_runtime_sec": 543.7293,
+    "train_samples_per_second": 44.14,
+    "train_loss": 0.22047137959798177,
+    "rss_after_model_bytes": 534872064,
+    "peak_rss_bytes": 1167228928,
+    "memory_overhead_bytes": 632356864,
+    "peak_mps_bytes": 803633152,
+    "epoch_times_sec": [
+      195.71591262496077,
+      165.8638962090481,
+      160.42422491696198
+    ],
+    "accuracy": 0.8910550458715596,
+    "f1": 0.8940914158305463,
+    "eval_loss": 0.43246692419052124,
+    "eval_history": [
+      {
+        "epoch": 1.0,
+        "accuracy": 0.8853211009174312,
+        "f1": 0.8913043478260869,
+        "eval_loss": 0.28901416063308716
+      },
+      {
+        "epoch": 2.0,
+        "accuracy": 0.875,
+        "f1": 0.8803512623490669,
+        "eval_loss": 0.37859511375427246
+      },
+      {
+        "epoch": 3.0,
+        "accuracy": 0.8910550458715596,
+        "f1": 0.8940914158305463,
+        "eval_loss": 0.43246692419052124
+      },
+      {
+        "epoch": 3.0,
+        "accuracy": 0.8910550458715596,
+        "f1": 0.8940914158305463,
+        "eval_loss": 0.43246692419052124
+      }
+    ],
+    "inference_merged": [
+      {
+        "batch_size": 1,
+        "latency_ms_p50": 71.60418723651674,
+        "latency_ms_p95": 77.43929701973684,
+        "latency_ms_mean": 67.61399554878673,
+        "ms_per_sample_p50": 71.60418723651674,
+        "throughput_samples_per_sec": 13.965663721548669
+      },
+      {
+        "batch_size": 8,
+        "latency_ms_p50": 74.70705700688995,
+        "latency_ms_p95": 123.76929662423208,
+        "latency_ms_mean": 72.75916888154045,
+        "ms_per_sample_p50": 9.338382125861244,
+        "throughput_samples_per_sec": 107.08493040037958
+      },
+      {
+        "batch_size": 32,
+        "latency_ms_p50": 140.38588012044784,
+        "latency_ms_p95": 170.93829163059127,
+        "latency_ms_mean": 142.96409227037137,
+        "ms_per_sample_p50": 4.387058753763995,
+        "throughput_samples_per_sec": 227.94315192200767
+      }
+    ],
+    "inference_unmerged": null,
+    "cost_definition": "trainable_params * (8 bytes Adam moments + 4 bytes gradient) * optimizer steps",
+    "inference_benchmark": "round_robin_median"
+  },
+  "operating_point": {
+    "run_name": "lora_r16",
+    "mode": "lora",
+    "rank": 16,
+    "lora_alpha": 32,
+    "target_modules": [
+      "q_lin",
+      "v_lin"
+    ],
+    "modules_to_save": [
+      "pre_classifier",
+      "classifier",
+      "classifier",
+      "score"
+    ],
+    "learning_rate": 0.0005,
+    "model_name": "distilbert-base-uncased",
+    "seed": 42,
+    "epochs": 3,
+    "train_samples": 8000,
+    "eval_samples": 872,
+    "batch_size": 16,
+    "max_length": 64,
+    "device": "Apple MPS",
+    "python": "3.12.3",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "versions": {
+      "torch": "2.11.0",
+      "transformers": "5.2.0",
+      "peft": "0.21.1",
+      "datasets": "5.0.1"
+    },
+    "total_params": 67842052,
+    "trainable_params": 887042,
+    "trainable_fraction": 0.01307510568813573,
+    "optimizer_and_grad_bytes": 10644504,
+    "training_cost_bytes": 15966756000,
+    "allreduce_bytes_per_step": 3548168.0,
+    "global_steps": 1500,
+    "train_runtime_sec": 269.8084,
+    "train_samples_per_second": 88.952,
+    "train_loss": 0.2610846652984619,
+    "rss_after_model_bytes": 527007744,
+    "peak_rss_bytes": 1066467328,
+    "memory_overhead_bytes": 539459584,
+    "peak_mps_bytes": 291202816,
+    "epoch_times_sec": [
+      83.67794204200618,
+      83.01652991690207,
+      86.20688445796259
+    ],
+    "accuracy": 0.8818807339449541,
+    "f1": 0.8841394825646794,
+    "eval_loss": 0.3321076035499573,
+    "eval_history": [
+      {
+        "epoch": 1.0,
+        "accuracy": 0.8727064220183486,
+        "f1": 0.8731428571428571,
+        "eval_loss": 0.30108487606048584
+      },
+      {
+        "epoch": 2.0,
+        "accuracy": 0.8738532110091743,
+        "f1": 0.8785871964679912,
+        "eval_loss": 0.33509618043899536
+      },
+      {
+        "epoch": 3.0,
+        "accuracy": 0.8818807339449541,
+        "f1": 0.8841394825646794,
+        "eval_loss": 0.3321076035499573
+      },
+      {
+        "epoch": 3.0,
+        "accuracy": 0.8818807339449541,
+        "f1": 0.8841394825646794,
+        "eval_loss": 0.3321076035499573
+      }
+    ],
+    "inference_merged": [
+      {
+        "batch_size": 1,
+        "latency_ms_p50": 75.40604700625408,
+        "latency_ms_p95": 83.2223282486666,
+        "latency_ms_mean": 71.17168303479308,
+        "ms_per_sample_p50": 75.40604700625408,
+        "throughput_samples_per_sec": 13.261535907286868
+      },
+      {
+        "batch_size": 8,
+        "latency_ms_p50": 77.81041148700751,
+        "latency_ms_p95": 99.1163126018364,
+        "latency_ms_mean": 60.19548367476091,
+        "ms_per_sample_p50": 9.72630143587594,
+        "throughput_samples_per_sec": 102.8140045414849
+      },
+      {
+        "batch_size": 32,
+        "latency_ms_p50": 132.17339587572496,
+        "latency_ms_p95": 177.36906773643568,
+        "latency_ms_mean": 137.3520646988514,
+        "ms_per_sample_p50": 4.130418621116405,
+        "throughput_samples_per_sec": 242.10621046680043
+      }
+    ],
+    "inference_unmerged": [
+      {
+        "batch_size": 1,
+        "latency_ms_p50": 12.090542004443705,
+        "latency_ms_p95": 20.458666956983507,
+        "latency_ms_mean": 13.32068437768612,
+        "ms_per_sample_p50": 12.090542004443705,
+        "throughput_samples_per_sec": 75.07121793795595
+      },
+      {
+        "batch_size": 8,
+        "latency_ms_p50": 32.980666030198336,
+        "latency_ms_p95": 35.42774997185916,
+        "latency_ms_mean": 32.527662406209856,
+        "ms_per_sample_p50": 4.122583253774792,
+        "throughput_samples_per_sec": 245.94451024776745
+      },
+      {
+        "batch_size": 32,
+        "latency_ms_p50": 208.66399991791695,
+        "latency_ms_p95": 269.8448330629617,
+        "latency_ms_mean": 217.69807706878055,
+        "ms_per_sample_p50": 6.520749997434905,
+        "throughput_samples_per_sec": 146.99257076988224
+      }
+    ],
+    "cost_definition": "trainable_params * (8 bytes Adam moments + 4 bytes gradient) * optimizer steps",
+    "inference_benchmark": "round_robin_median",
+    "verdict": {
+      "cost_reduction": 0.9867516710101305,
+      "accuracy_drop": 0.00917431192660545,
+      "cost_ok": true,
+      "quality_ok": true,
+      "passed": true
+    },
+    "wall_clock_reduction": 0.503781753162833,
+    "memory_overhead_reduction": 0.14690641517255673
+  },
+  "passed": true,
+  "distributed": {
+    "world_size": 2,
+    "backend": "gloo",
+    "runs": [
+      {
+        "mode": "full",
+        "rank": null,
+        "world_size": 2,
+        "backend": "gloo",
+        "device": "cpu",
+        "trainable_params": 66955010,
+        "total_params": 66955010,
+        "allreduce_bytes_per_step": 267820040.0,
+        "steps_measured": 20,
+        "warmup_steps": 5,
+        "batch_size": 8,
+        "mean_step_sec": 1.5646890062955208,
+        "median_step_sec": 1.4633137499913573,
+        "loss_first": 0.6923727989196777,
+        "loss_last": 0.5554671883583069
+      },
+      {
+        "mode": "lora",
+        "rank": 8,
+        "world_size": 2,
+        "backend": "gloo",
+        "device": "cpu",
+        "trainable_params": 739586,
+        "total_params": 67694596,
+        "allreduce_bytes_per_step": 2958344.0,
+        "steps_measured": 20,
+        "warmup_steps": 5,
+        "batch_size": 8,
+        "mean_step_sec": 0.3610988312051632,
+        "median_step_sec": 0.3648481670534238,
+        "loss_first": 0.6923727989196777,
+        "loss_last": 0.4851767420768738
+      }
+    ]
+  },
+  "operating_point_name": "lora_r16"
+}
